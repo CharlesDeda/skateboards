@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+struct Skateboard {
+  let name: String
+  var backgroundColor: Color
+  var wheelColor: Color
+  var trucksColor: Color
+  let description: String
+}
+
+let mock = Skateboard(
+  name: "Plan B",
+  backgroundColor: .red,
+  wheelColor: .gray,
+  trucksColor: .blue,
+  description: .lorumIpsum
+)
+
 struct SkateboardView: View {
   let skateboard: Skateboard
   
@@ -14,9 +30,24 @@ struct SkateboardView: View {
     VStack(alignment: .leading) {
       SkateboardTitleView(skateboard: skateboard)
       SkateboardShapeView(skateboard: skateboard)
+      SkateboardDetailView(skateboard: skateboard)
       Spacer()
     }
     .padding()
+  }
+}
+
+
+
+// MARK: - Helper Views
+
+struct SkateboardDetailView: View {
+  let skateboard: Skateboard
+  
+  var body: some View {
+    ColorPicker.init("Base", selection: .constant(skateboard.backgroundColor))
+    ColorPicker.init("Trucks", selection: .constant(skateboard.trucksColor))
+    ColorPicker.init("Wheels", selection: .constant(skateboard.wheelColor))
   }
 }
 
