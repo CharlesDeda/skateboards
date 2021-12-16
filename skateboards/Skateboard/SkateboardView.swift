@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
-struct Skateboard {
+struct SkateboardState: Equatable {
   let name: String
   var backgroundColor: Color
   var wheelColor: Color
@@ -15,25 +16,61 @@ struct Skateboard {
   let description: String
 }
 
-let mock = Skateboard(
-  name: "Plan B",
-  backgroundColor: .red,
-  wheelColor: .gray,
-  trucksColor: .blue,
-  description: .lorumIpsum
-)
+enum SkateboardAction: Equatable {
+  case updateBase(Color)
+  case updateTrucks(Color)
+  case updateWheels(Color)
+}
+
+struct SkateboardEnvironment {
+  
+}
+
+let skateboardReducer = Reducer<SkateboardState, SkateboardAction, SkateboardEnvironment> { state, action, environment in
+  switch action {
+    
+  case let .updateBase(color):
+    state.backgroundColor = color
+    return .none
+    
+  case let .updateTrucks(color):
+    state.trucksColor = color
+    return .none
+    
+  case let .updateWheels(color):
+    state.wheelColor = color
+    return .none
+    
+  }
+}
+
+extension SkateboardState {
+  static let mockStore = Store(
+    initialState: SkateboardState(
+      name: "Plan B",
+      backgroundColor: .red,
+      wheelColor: .gray,
+      trucksColor: .blue,
+      description: .lorumIpsum
+    ),
+    reducer: skateboardReducer,
+    environment: SkateboardEnvironment()
+  )
+}
 
 struct SkateboardView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    VStack {
-      TitleView(skateboard: skateboard)
-      ShapeView(skateboard: skateboard)
-      DetailView(skateboard: skateboard)
-      Spacer()
+    WithViewStore(store) { viewStore in
+      VStack {
+        TitleView(store: store)
+        ShapeView(store: store)
+        DetailView(store: store)
+        Spacer()
+      }
+      .padding()
     }
-    .padding()
   }
 }
 
@@ -42,84 +79,94 @@ struct SkateboardView: View {
 // MARK: - Helper Views
 
 private struct DetailView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    ColorPicker.init("Base", selection: .constant(skateboard.backgroundColor))
-    ColorPicker.init("Trucks", selection: .constant(skateboard.trucksColor))
-    ColorPicker.init("Wheels", selection: .constant(skateboard.wheelColor))
+    WithViewStore(store) { viewStore in
+      ColorPicker.init("Base", selection: viewStore.binding(get: \.backgroundColor, send: SkateboardAction.updateBase))
+      ColorPicker.init("Trucks", selection: viewStore.binding(get: \.trucksColor, send: SkateboardAction.updateTrucks))
+      ColorPicker.init("Wheels", selection: viewStore.binding(get: \.wheelColor, send: SkateboardAction.updateWheels))
+    }
   }
 }
 
 private struct TitleView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    VStack(alignment: .leading) {
-      Text(skateboard.name)
-        .font(.title)
-        .bold()
-      Text(skateboard.description)
-        .font(.subheadline)
-        .lineLimit(4)
+    WithViewStore(store) { viewStore in
+      VStack(alignment: .leading) {
+        Text(viewStore.name)
+          .font(.title)
+          .bold()
+        Text(viewStore.description)
+          .font(.subheadline)
+          .lineLimit(4)
+      }
+      .padding(.bottom)
     }
-    .padding(.bottom)
   }
 }
 
 private struct ShapeView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    GroupBox {
-      VStack {
-        ZStack {
-          BaseView(skateboard: skateboard)
-          VStack {
-            WheelsView(skateboard: skateboard)
-            Spacer()
-            WheelsView(skateboard: skateboard)
+    WithViewStore(store) { viewStore in
+      GroupBox {
+        VStack {
+          ZStack {
+            BaseView(store: store)
+            VStack {
+              WheelsView(store: store)
+              Spacer()
+              WheelsView(store: store)
+            }
+            .padding(.vertical, 100)
           }
-          .padding(.vertical, 100)
+          .frame(width: 140, height: 450)
         }
-        .frame(width: 140, height: 450)
+        .frame(maxWidth: .infinity)
       }
-      .frame(maxWidth: .infinity)
     }
   }
 }
 
 private struct BaseView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    RoundedRectangle(cornerRadius: 130, style: .continuous)
-      .foregroundColor(skateboard.backgroundColor)
-      .padding()
+    WithViewStore(store) { viewStore in
+      RoundedRectangle(cornerRadius: 130, style: .continuous)
+        .foregroundColor(viewStore.backgroundColor)
+        .padding()
+    }
   }
 }
 
 private struct WheelsView: View {
-  let skateboard: Skateboard
+  let store: Store<SkateboardState, SkateboardAction>
   
   var body: some View {
-    HStack {
-      RoundedRectangle(cornerRadius: 10)
-        .foregroundColor(skateboard.wheelColor)
-        .frame(width: 30, height: 50)
-      RoundedRectangle(cornerRadius: 10)
-        .foregroundColor(skateboard.trucksColor)
-        .frame(height: 25)
-      RoundedRectangle(cornerRadius: 10)
-        .foregroundColor(skateboard.wheelColor)
-        .frame(width: 30, height: 50)
+    WithViewStore(store) { viewStore in
+      HStack {
+        RoundedRectangle(cornerRadius: 10)
+          .foregroundColor(viewStore.wheelColor)
+          .frame(width: 30, height: 50)
+        RoundedRectangle(cornerRadius: 10)
+          .foregroundColor(viewStore.trucksColor)
+          .frame(height: 25)
+        RoundedRectangle(cornerRadius: 10)
+          .foregroundColor(viewStore.wheelColor)
+          .frame(width: 30, height: 50)
+      }
     }
   }
 }
 
 struct SkateboardView_Previews: PreviewProvider {
   static var previews: some View {
-    SkateboardView(skateboard: mock)
+    SkateboardView(store: SkateboardState.mockStore)
       .preferredColorScheme(.dark)
   }
 }
