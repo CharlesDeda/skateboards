@@ -27,10 +27,10 @@ struct SkateboardView: View {
   let skateboard: Skateboard
   
   var body: some View {
-    VStack(alignment: .leading) {
-      SkateboardTitleView(skateboard: skateboard)
-      SkateboardShapeView(skateboard: skateboard)
-      SkateboardDetailView(skateboard: skateboard)
+    VStack {
+      TitleView(skateboard: skateboard)
+      ShapeView(skateboard: skateboard)
+      DetailView(skateboard: skateboard)
       Spacer()
     }
     .padding()
@@ -41,7 +41,7 @@ struct SkateboardView: View {
 
 // MARK: - Helper Views
 
-struct SkateboardDetailView: View {
+private struct DetailView: View {
   let skateboard: Skateboard
   
   var body: some View {
@@ -51,7 +51,7 @@ struct SkateboardDetailView: View {
   }
 }
 
-struct SkateboardTitleView: View {
+private struct TitleView: View {
   let skateboard: Skateboard
   
   var body: some View {
@@ -67,7 +67,7 @@ struct SkateboardTitleView: View {
   }
 }
 
-struct SkateboardShapeView: View {
+private struct ShapeView: View {
   let skateboard: Skateboard
   
   var body: some View {
@@ -89,7 +89,7 @@ struct SkateboardShapeView: View {
   }
 }
 
-struct BaseView: View {
+private struct BaseView: View {
   let skateboard: Skateboard
   
   var body: some View {
@@ -99,7 +99,7 @@ struct BaseView: View {
   }
 }
 
-struct WheelsView: View {
+private struct WheelsView: View {
   let skateboard: Skateboard
   
   var body: some View {
