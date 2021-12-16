@@ -7,61 +7,54 @@
 
 import SwiftUI
 
-struct Skateboard {
-  let name: String
-  var backgroundColor: Color
-  var wheelColor: Color
-  var trucksColor: Color
-  let description: String
-}
-let mock = Skateboard(
-  name: "Plan B",
-  backgroundColor: .red,
-  wheelColor: .gray,
-  trucksColor: .blue,
-  description: .lorumIpsum
-)
-
-struct MainSkateboardView: View {
+struct SkateboardView: View {
   let skateboard: Skateboard
-
+  
   var body: some View {
     VStack(alignment: .leading) {
-      VStack(alignment: .leading) {
-        Text(skateboard.name)
-          .font(.title)
-          .bold()
-        Text(skateboard.description)
-          .font(.subheadline)
-          .lineLimit(4)
-      }
-      .padding(.bottom)
-      GroupBox {
-        VStack {
-          SkateboardView(skateboard: skateboard)
-        }
-        .frame(maxWidth: .infinity)
-      }
+      SkateboardTitleView(skateboard: skateboard)
+      SkateboardShapeView(skateboard: skateboard)
       Spacer()
     }
     .padding()
   }
 }
 
-struct SkateboardView: View {
+struct SkateboardTitleView: View {
   let skateboard: Skateboard
   
   var body: some View {
-    ZStack {
-      BaseView(skateboard: skateboard)
-      VStack {
-        WheelsView(skateboard: skateboard)
-        Spacer()
-        WheelsView(skateboard: skateboard)
-      }
-      .padding(.vertical, 100)
+    VStack(alignment: .leading) {
+      Text(skateboard.name)
+        .font(.title)
+        .bold()
+      Text(skateboard.description)
+        .font(.subheadline)
+        .lineLimit(4)
     }
-    .frame(width: 140, height: 450)
+    .padding(.bottom)
+  }
+}
+
+struct SkateboardShapeView: View {
+  let skateboard: Skateboard
+  
+  var body: some View {
+    GroupBox {
+      VStack {
+        ZStack {
+          BaseView(skateboard: skateboard)
+          VStack {
+            WheelsView(skateboard: skateboard)
+            Spacer()
+            WheelsView(skateboard: skateboard)
+          }
+          .padding(.vertical, 100)
+        }
+        .frame(width: 140, height: 450)
+      }
+      .frame(maxWidth: .infinity)
+    }
   }
 }
 
@@ -93,4 +86,9 @@ struct WheelsView: View {
   }
 }
 
-
+struct SkateboardView_Previews: PreviewProvider {
+  static var previews: some View {
+    SkateboardView(skateboard: mock)
+      .preferredColorScheme(.dark)
+  }
+}

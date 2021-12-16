@@ -13,6 +13,7 @@
 		F9D4FE15276BD92F00EE617C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D4FE14276BD92F00EE617C /* Preview Assets.xcassets */; };
 		F9D4FE1E276BE7AD00EE617C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4FE1D276BE7AD00EE617C /* AppView.swift */; };
 		F9D4FE21276BE91300EE617C /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4FE20276BE91300EE617C /* String + Extensions.swift */; };
+		F9D4FE23276BE96600EE617C /* SkateboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4FE22276BE96600EE617C /* SkateboardState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F9D4FE14276BD92F00EE617C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F9D4FE1D276BE7AD00EE617C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		F9D4FE20276BE91300EE617C /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
+		F9D4FE22276BE96600EE617C /* SkateboardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkateboardState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		F9D4FE1C276BE75500EE617C /* Skateboard */ = {
 			isa = PBXGroup;
 			children = (
+				F9D4FE22276BE96600EE617C /* SkateboardState.swift */,
 				F9D4FE0F276BD92E00EE617C /* SkateboardView.swift */,
 			);
 			path = Skateboard;
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9D4FE23276BE96600EE617C /* SkateboardState.swift in Sources */,
 				F9D4FE10276BD92E00EE617C /* SkateboardView.swift in Sources */,
 				F9D4FE1E276BE7AD00EE617C /* AppView.swift in Sources */,
 				F9D4FE21276BE91300EE617C /* String + Extensions.swift in Sources */,

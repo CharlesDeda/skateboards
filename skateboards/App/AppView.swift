@@ -10,8 +10,9 @@ import SwiftUI
 
 struct AppView: View {
   let skateboard = mock
+  
   var body: some View {
-    MainSkateboardView(skateboard: skateboard)
+    SkateboardView(skateboard: skateboard)
   }
 }
 
