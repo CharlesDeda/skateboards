@@ -23,7 +23,8 @@ enum SkateboardAction: Equatable {
   case updateWheels(Color)
 }
 
-struct SkateboardEnvironment {}
+struct SkateboardEnvironment {
+}
 
 let skateboardReducer = Reducer<SkateboardState, SkateboardAction, SkateboardEnvironment> { state, action, environment in
   switch action {

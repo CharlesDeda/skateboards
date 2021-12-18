@@ -26,12 +26,13 @@ struct AppView: View {
               }
             }
           }
-          //        SkateboardView(store: store.scope(
-  //          state: \.skateboard,
-  //          action: AppAction.skateboard
-  //        ))
         }
         .navigationTitle("Skateboards")
+        .toolbar {
+          Button("Add") {
+            // add new skateboard
+          }
+        }
       }
     }
   }
