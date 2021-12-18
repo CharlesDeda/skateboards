@@ -30,7 +30,7 @@ struct AppView: View {
         .navigationTitle("Skateboards")
         .toolbar {
           Button("Add") {
-            // add new skateboard
+            viewStore.send(.addSkateboard)
           }
         }
       }

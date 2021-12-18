@@ -13,6 +13,7 @@ struct AppState: Equatable {
 
 enum AppAction: Equatable {
   case skateboards(id: SkateboardState.ID, action: SkateboardAction)
+  case addSkateboard
 }
 
 struct AppEnvironment {}
@@ -27,6 +28,17 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     switch action {
       
     case .skateboards:
+      return .none
+      
+    case .addSkateboard:
+      state.skateboards.append(
+        SkateboardState(
+          name: "untitled",
+          backgroundColor: .primary,
+          wheelColor: .secondary,
+          trucksColor: .secondary,
+          description: "untitled"
+        ))
       return .none
     }
   }
