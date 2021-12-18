@@ -46,12 +46,12 @@ private struct TitleView: View {
   var body: some View {
     WithViewStore(store) { viewStore in
       VStack(alignment: .leading) {
-        Text(viewStore.name)
+        //        ColorPicker.init("123", selection: <#T##Binding<Color>#>)
+        //        TextField.init("123", text: <#T##Binding<String>#>)
+        TextField.init("123", text: viewStore.binding(get: \.name, send: SkateboardAction.updateName))
           .font(.title)
-          .bold()
-        Text(viewStore.description)
+        TextField.init("123", text: viewStore.binding(get: \.description, send: SkateboardAction.updateDescription))
           .font(.subheadline)
-          //.lineLimit(4)
       }
       .padding(.bottom)
     }

@@ -10,17 +10,19 @@ import ComposableArchitecture
 
 struct SkateboardState: Identifiable, Equatable {
   let id = UUID()
-  let name: String
+  var name: String
   var backgroundColor: Color
   var wheelColor: Color
   var trucksColor: Color
-  let description: String
+  var description: String
 }
 
 enum SkateboardAction: Equatable {
   case updateBase(Color)
   case updateTrucks(Color)
   case updateWheels(Color)
+  case updateName(String)
+  case updateDescription(String)
 }
 
 struct SkateboardEnvironment {
@@ -41,6 +43,13 @@ let skateboardReducer = Reducer<SkateboardState, SkateboardAction, SkateboardEnv
     state.wheelColor = color
     return .none
     
+  case let .updateName(string):
+    state.name = string
+    return .none
+
+  case let .updateDescription(string):
+    state.description = string
+    return .none
   }
 }
 
