@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct skateboardsApp: App {
   var body: some Scene {
     WindowGroup {
-      AppView()
+      AppView(store: AppState.defaultStore)
     }
   }
 }

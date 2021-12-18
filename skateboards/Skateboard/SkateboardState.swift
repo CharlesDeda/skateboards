@@ -8,7 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SkateboardState: Equatable {
+struct SkateboardState: Identifiable, Equatable {
+  let id = UUID()
   let name: String
   var backgroundColor: Color
   var wheelColor: Color
@@ -22,9 +23,7 @@ enum SkateboardAction: Equatable {
   case updateWheels(Color)
 }
 
-struct SkateboardEnvironment {
-  
-}
+struct SkateboardEnvironment {}
 
 let skateboardReducer = Reducer<SkateboardState, SkateboardAction, SkateboardEnvironment> { state, action, environment in
   switch action {

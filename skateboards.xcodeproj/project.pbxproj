@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F97A6E2A276BF043002064C7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = F97A6E29276BF043002064C7 /* ComposableArchitecture */; };
+		F99FEBF0276E4985003B0443 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99FEBEF276E4985003B0443 /* AppState.swift */; };
 		F9D4FE0E276BD92E00EE617C /* skateboardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4FE0D276BD92E00EE617C /* skateboardsApp.swift */; };
 		F9D4FE10276BD92E00EE617C /* SkateboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4FE0F276BD92E00EE617C /* SkateboardView.swift */; };
 		F9D4FE12276BD92F00EE617C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D4FE11276BD92F00EE617C /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F99FEBEF276E4985003B0443 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F9D4FE0A276BD92E00EE617C /* skateboards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skateboards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D4FE0D276BD92E00EE617C /* skateboardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skateboardsApp.swift; sourceTree = "<group>"; };
 		F9D4FE0F276BD92E00EE617C /* SkateboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkateboardView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		F9D4FE1B276BE73E00EE617C /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F99FEBEF276E4985003B0443 /* AppState.swift */,
 				F9D4FE1D276BE7AD00EE617C /* AppView.swift */,
 			);
 			path = App;
@@ -181,6 +184,7 @@
 				F9D4FE23276BE96600EE617C /* SkateboardState.swift in Sources */,
 				F9D4FE10276BD92E00EE617C /* SkateboardView.swift in Sources */,
 				F9D4FE1E276BE7AD00EE617C /* AppView.swift in Sources */,
+				F99FEBF0276E4985003B0443 /* AppState.swift in Sources */,
 				F9D4FE21276BE91300EE617C /* String + Extensions.swift in Sources */,
 				F9D4FE0E276BD92E00EE617C /* skateboardsApp.swift in Sources */,
 			);
@@ -240,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -295,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

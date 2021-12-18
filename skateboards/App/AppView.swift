@@ -7,18 +7,40 @@
 
 import Foundation
 import SwiftUI
+import ComposableArchitecture
 
 struct AppView: View {
+  let store: Store<AppState, AppAction>
   
   var body: some View {
-    SkateboardView(store: SkateboardState.mockStore)
+    WithViewStore(store) { viewStore in
+      NavigationView {
+        List {
+          ForEachStore(store.scope(
+            state: \.skateboards,
+            action: AppAction.skateboards
+          )) { childStore in
+            WithViewStore(childStore) { childViewStore in
+              NavigationLink(childViewStore.name) {
+                SkateboardView(store: childStore)
+              }
+            }
+          }
+          //        SkateboardView(store: store.scope(
+  //          state: \.skateboard,
+  //          action: AppAction.skateboard
+  //        ))
+        }
+        .navigationTitle("Skateboards")
+      }
+    }
   }
 }
 
 
 struct AppView_Previews: PreviewProvider {
   static var previews: some View {
-    AppView()
+    AppView(store: AppState.defaultStore)
       .preferredColorScheme(.dark)
   }
 }
